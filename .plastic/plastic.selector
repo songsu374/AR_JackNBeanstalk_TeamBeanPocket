@@ -1,0 +1,4 @@
+repository "AR_Project_Github_0610@Jack_Kong@cloud"
+  path "/"
+    br "/main"
+    co "/main"

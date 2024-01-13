@@ -49,6 +49,15 @@ public class ItemManager : MonoBehaviour
     [Header("UI")]
     public GameObject TextSeed;
     public GameObject TextCameraAround;
+    public GameObject UI_Key;
+    public GameObject UI_Wood;
+    public GameObject UI_Seed;
+
+    [Header("BGM")]
+    public AudioSource BGM_Item;
+    public AudioSource BGM_Beanstalk;
+    public AudioSource BGM_Door;
+    public AudioSource BGM_Wood;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +72,10 @@ public class ItemManager : MonoBehaviour
         WoodPlankArrow.SetActive(false);
         TextSeed.SetActive(false);
         TextCameraAround.SetActive(true);
+        UI_Key.SetActive(false);
+        UI_Seed.SetActive(false);
+        UI_Wood.SetActive(false);
+
     }
 
     // Update is called once per frame

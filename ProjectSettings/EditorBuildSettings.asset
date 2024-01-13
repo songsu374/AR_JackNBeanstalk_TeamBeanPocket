@@ -6,7 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/1. JY/1.Scene/Intro.unity
+    guid: 3ea43e2ab1dd41f45a7789fd401dc3ba
+  - enabled: 1
+    path: Assets/1. JY/1.Scene/StoryStart.unity
+    guid: b41e7e06b374c9144b7c36e4ca043d76
+  - enabled: 1
+    path: Assets/3. HM/1. Scene/AR_LoadScene.unity
+    guid: fe424271fe5691542a16778c75c3d0d6
+  - enabled: 1
+    path: Assets/3. HM/1. Scene/Final_GameScene.unity
+    guid: 7d607c3f17ee77944beb5234928412d1
+  - enabled: 1
+    path: Assets/1. JY/1.Scene/StoryEnd.unity
+    guid: c5579eb75e8fb8b40ad68c3b78681cc5
+  - enabled: 1
+    path: Assets/1. JY/1.Scene/Outro.unity
+    guid: e9e49e9c51a0d314aab7c9a476042704
+  - enabled: 0
+    path: Assets/3. HM/1. Scene/GameScene.unity
+    guid: 4294c2b41b9b10443842cd1ef923e5b0
+  - enabled: 0
     path: Assets/2. SB/01.Scenes/Jack.unity
     guid: 8338b77cc4d4f8f4ba1a0f573aa1d1fb
   m_configObjects:
-    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 5cdf5b0d907df2547b31cea5bf482284, type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: db8b033c997dfbd49b9397af1c3446d3, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1c02c6faf25a99c4e88abecd78abc6ad, type: 2}

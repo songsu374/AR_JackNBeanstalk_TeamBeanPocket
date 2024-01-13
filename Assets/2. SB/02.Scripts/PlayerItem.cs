@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerItem : MonoBehaviour
 {
@@ -28,18 +29,25 @@ public class PlayerItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Key"))
         {
             Debug.Log("키와 충돌");
-            ItemManager.instance.isKey = true;         
+            ItemManager.instance.isKey = true;
+
+            ItemManager.instance.BGM_Item.Play();
+
             collision.gameObject.SetActive(false);
             ItemManager.instance.DoorArrow.SetActive(true);
+            ItemManager.instance.UI_Key.SetActive(true);
         }
         else if (collision.gameObject.CompareTag("Door"))
         {
             if (ItemManager.instance.isKey == true)
             {
+                ItemManager.instance.UI_Key.SetActive(false);
+
                 //키가 있는 상태에서 문이랑 충돌했을 때
                 ItemManager.instance.isDoor = true;
 
                 Debug.Log("문이랑 충돌");
+                ItemManager.instance.BGM_Door.Play();
                 ItemManager.instance.DoorArrow.SetActive(false);
 
                 ItemManager.instance.Door.GetComponent<Animator>().SetTrigger("OpenDoor");
@@ -58,8 +66,14 @@ public class PlayerItem : MonoBehaviour
             if (ItemManager.instance.isKey == true && ItemManager.instance.isDoor == true)
             {
                 ItemManager.instance.isWoodPlank = true;
+                ItemManager.instance.BGM_Item.Play();
+
                 collision.gameObject.SetActive(false);
                 ItemManager.instance.WoodPlankArrow.SetActive(true);
+                ItemManager.instance.OpenDoor.SetActive(false);
+
+                ItemManager.instance.UI_Wood.SetActive(true);
+
             }
 
         }
@@ -70,6 +84,9 @@ public class PlayerItem : MonoBehaviour
             {
                 if (ItemManager.instance.isWoodEFX == false)
                 {
+                    ItemManager.instance.BGM_Wood.Play();
+                    ItemManager.instance.UI_Wood.SetActive(false);
+
                     ItemManager.instance.WoodPlankArrow.SetActive(false);
                     ItemManager.instance.WoodPlankPutOff.GetComponentInChildren<ParticleSystem>().Play();
 
@@ -88,9 +105,13 @@ public class PlayerItem : MonoBehaviour
         {
             Debug.Log("씨앗이랑 충돌");
             ItemManager.instance.isSeed = true;
+            ItemManager.instance.BGM_Item.Play();
+
             collision.gameObject.SetActive(false);
             ItemManager.instance.TextSeed.SetActive(true);
             ItemManager.instance.TextCameraAround.SetActive(false);
+            ItemManager.instance.UI_Seed.SetActive(true);
+
 
         }
         else if (collision.gameObject.CompareTag("BeanstalkArea"))
@@ -98,14 +119,21 @@ public class PlayerItem : MonoBehaviour
 
             if (ItemManager.instance.isSeed == true)
             {
+                ItemManager.instance.UI_Seed.SetActive(false);
+
+                ItemManager.instance.BGM_Beanstalk.Play();
                 ItemManager.instance.Beanstalk.SetActive(true);
                 CameraShake.instacne.Shake();
                 ItemManager.instance.BeanstalkArea.GetComponentInChildren<ParticleSystem>().Play();
                 ItemManager.instance.Beanstalk.GetComponent<Animator>().SetTrigger("Beanstalk");
-            
+
+                Invoke("SceneLoad", 4f);
             }
         }
     }
-
+    void SceneLoad()
+    {
+        SceneManager.LoadScene("StoryEnd");
+    }
 
 }

@@ -12,6 +12,9 @@ TagManager:
   - WoodPlankArea
   - Missile
   - BeanstalkArea
+  - Climbing
+  - Stage
+  - DontFallDown
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,13 @@ public class PalyerMove : MonoBehaviour
     Vector3 Click;
     bool is_touch = false;
 
+    GameObject effectPosition;
+    public GameObject positionMark;
+
+    public float DestroyTime = 0.5f;
+
+    public Transform startPoint;
+
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -35,24 +42,39 @@ public class PalyerMove : MonoBehaviour
                 m_vecTarget = hit.point;
                 m_vecTarget.y = transform.position.y;
                 anim.SetTrigger("Walking");
+                Destroy(effectPosition, DestroyTime);
+
 
                 Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out Hit);
                 Click = Hit.point;
                 dr = Quaternion.LookRotation((Click - transform.position).normalized);
                 dr.x = 0;
                 dr.z = 0;         // 캐릭터 기울기 방지
+
+                effectPosition = Instantiate(positionMark);
+                effectPosition.transform.position = m_vecTarget;
+
             }
         }
         if (is_touch == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, m_vecTarget, m_fSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, dr, TurnSpeed * Time.deltaTime);
-            if (Mathf.Abs(transform.position.x - m_vecTarget.x) < 0.1f &&
-                Mathf.Abs(transform.position.z - m_vecTarget.z) < 0.1f
+            if (Mathf.Abs(transform.position.x - m_vecTarget.x) < 0.01f &&
+                Mathf.Abs(transform.position.z - m_vecTarget.z) < 0.01f
                 )
             {
                 is_touch = false;
+                Destroy(effectPosition);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "DontFallDown")
+        {
+            this.transform.position = startPoint.position;
         }
     }
 }

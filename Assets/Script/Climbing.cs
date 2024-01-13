@@ -39,7 +39,8 @@ public class Climbing : MonoBehaviour
             }
             else desPos = endPos;
         }
- 
+
         currentDelay = delay;
     }
+
 }

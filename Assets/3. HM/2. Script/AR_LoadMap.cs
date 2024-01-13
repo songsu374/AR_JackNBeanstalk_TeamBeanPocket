@@ -13,7 +13,6 @@ public class AR_LoadMap : MonoBehaviour
     Dictionary<string, GameObject> spwanObj;
 
     public GameObject map_Prefeb;
-    //public Text debug_1;
 
     private void Awake()
     {
@@ -43,13 +42,12 @@ public class AR_LoadMap : MonoBehaviour
     {
         foreach (ARTrackedImage tracked_img in args.added)
         {
-            //debug_1.text = "∞À√‚µ ";
             UpdateObj(tracked_img);
         }
 
         foreach (ARTrackedImage tracked_img in args.updated)
         {
-            UpdateObj(tracked_img);
+            //UpdateObj(tracked_img);
         }
 
         //foreach (ARTrackedImage tracked_img in args.added)
@@ -65,7 +63,6 @@ public class AR_LoadMap : MonoBehaviour
         spwanObj[loadname].transform.position = img.transform.position;
         spwanObj[loadname].transform.rotation = img.transform.rotation;
 
-        //debug_1.text = "«¡∏Æ∆È πËƒ°";
     }
 
     // Start is called before the first frame update
